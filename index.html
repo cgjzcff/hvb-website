@@ -1,0 +1,967 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>超高价商学院 · High-value Business Schools</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Noto+Sans+SC:wght@300;400;500;700&family=Noto+Serif+SC:wght@400;500;700;900&family=Playfair+Display:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #121212;
+            --bg-card: #1a1a1a;
+            --bg-card-premium: #1e1a14;
+            --gold: #c9a961;
+            --gold-light: #e8d5a3;
+            --gold-dark: #9a7d3f;
+            --text-primary: #e8e8e8;
+            --text-secondary: #a0a0a0;
+            --text-muted: #6a6a6a;
+            --border: rgba(201, 169, 97, 0.15);
+            --border-hover: rgba(201, 169, 97, 0.4);
+            --border-premium: rgba(201, 169, 97, 0.3);
+            --serif: 'Playfair Display', 'Noto Serif SC', serif;
+            --serif-alt: 'Cormorant Garamond', 'Noto Serif SC', serif;
+            --sans: 'Noto Sans SC', sans-serif;
+            --transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            font-family: var(--sans);
+            font-weight: 300;
+            line-height: 1.8;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        ::selection { background: var(--gold); color: var(--bg-primary); }
+
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--bg-primary); }
+        ::-webkit-scrollbar-thumb { background: var(--gold-dark); border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--gold); }
+
+        .navbar {
+            position: fixed; top: 0; left: 0; width: 100%;
+            padding: 1.5rem 4rem;
+            display: flex; justify-content: space-between; align-items: center;
+            z-index: 1000; transition: var(--transition); background: transparent;
+        }
+        .navbar.scrolled {
+            background: rgba(10, 10, 10, 0.92);
+            backdrop-filter: blur(20px);
+            padding: 1rem 4rem;
+            border-bottom: 1px solid var(--border);
+        }
+        .nav-logo {
+            font-family: var(--serif); font-size: 1.4rem; font-weight: 700;
+            color: var(--text-primary); text-decoration: none; letter-spacing: 1px;
+            display: flex; align-items: center; gap: 0.6rem;
+        }
+        .nav-logo .dot { width: 8px; height: 8px; background: var(--gold); border-radius: 50%; display: inline-block; }
+        .nav-logo .sub { font-size: 0.65rem; color: var(--gold); letter-spacing: 2px; font-weight: 400; }
+
+        .nav-menu { display: flex; list-style: none; gap: 2.5rem; align-items: center; }
+        .nav-menu a {
+            color: var(--text-secondary); text-decoration: none; font-size: 0.875rem;
+            letter-spacing: 1px; font-weight: 400; position: relative; transition: var(--transition); padding: 0.3rem 0;
+        }
+        .nav-menu a::after {
+            content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 1px;
+            background: var(--gold); transition: width 0.3s ease;
+        }
+        .nav-menu a:hover, .nav-menu a.active { color: var(--gold); }
+        .nav-menu a:hover::after, .nav-menu a.active::after { width: 100%; }
+
+        .nav-cta {
+            padding: 0.6rem 1.8rem; border: 1px solid var(--gold); color: var(--gold) !important;
+            border-radius: 2px; font-size: 0.8rem; transition: var(--transition);
+        }
+        .nav-cta::after { display: none; }
+        .nav-cta:hover { background: var(--gold); color: var(--bg-primary) !important; }
+
+        .menu-toggle { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 0.5rem; }
+        .menu-toggle span { width: 24px; height: 2px; background: var(--text-primary); transition: var(--transition); }
+
+        .hero {
+            min-height: 100vh; display: flex; align-items: center; justify-content: space-between;
+            text-align: left; position: relative; overflow: hidden; padding: 6rem 2rem 2rem 4rem;
+        }
+        .hero::before {
+            content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            width: 900px; height: 900px;
+            background: radial-gradient(circle, rgba(201, 169, 97, 0.06) 0%, transparent 60%);
+            pointer-events: none;
+        }
+        .hero::after {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(ellipse at 20% 30%, rgba(201, 169, 97, 0.03) 0%, transparent 50%),
+                        radial-gradient(ellipse at 80% 70%, rgba(201, 169, 97, 0.02) 0%, transparent 50%);
+            pointer-events: none;
+        }
+        .hero-content { position: relative; z-index: 2; max-width: 640px; flex: 0 1 55%; }
+
+        .hero-image {
+            position: absolute; right: 0; bottom: 0; width: 55%; height: 100%;
+            z-index: 1; display: flex; align-items: flex-end; justify-content: flex-end;
+            pointer-events: none;
+        }
+        .hero-image img {
+            max-width: 100%; max-height: 100%; width: auto; height: auto;
+            object-fit: contain; object-position: right bottom;
+            filter: brightness(0.95) contrast(1.05);
+            -webkit-mask-image: linear-gradient(to right, transparent 0%, black 10%, black 100%);
+            mask-image: linear-gradient(to right, transparent 0%, black 10%, black 100%);
+        }
+        .hero-image-overlay {
+            position: absolute; inset: 0;
+            background: linear-gradient(to right, var(--bg-primary) 0%, var(--bg-primary) 8%, transparent 30%);
+            pointer-events: none;
+        }
+
+        .hero-tagline {
+            font-family: var(--serif-alt); font-size: 1.1rem; color: var(--gold);
+            letter-spacing: 6px; text-transform: uppercase; margin-bottom: 1.5rem;
+            font-weight: 400; opacity: 0; animation: fadeInUp 1s 0.2s forwards;
+        }
+        .hero-tagline::before, .hero-tagline::after { content: '—'; margin: 0 1rem; opacity: 0.5; }
+
+        .hero-title {
+            font-family: var(--serif); font-size: clamp(2.6rem, 7vw, 5rem); font-weight: 700;
+            line-height: 1.25; margin-bottom: 1.5rem; letter-spacing: 2px;
+            opacity: 0; animation: fadeInUp 1s 0.4s forwards;
+        }
+        .hero-title .accent { color: var(--gold); font-style: italic; font-weight: 400; }
+
+        .hero-highlight {
+            font-family: var(--serif); font-size: clamp(2.6rem, 7vw, 5rem); font-weight: 700;
+            line-height: 1.25; margin-bottom: 1.5rem; letter-spacing: 2px;
+            color: var(--gold); font-style: italic; font-weight: 400;
+            opacity: 0; animation: fadeInUp 1s 0.5s forwards;
+        }
+
+        .hero-subtitle {
+            font-size: 1.1rem; color: var(--text-secondary); max-width: 560px;
+            margin: 0 0 2.5rem 0; line-height: 2;
+            opacity: 0; animation: fadeInUp 1s 0.6s forwards;
+        }
+
+        .hero-buttons {
+            display: flex; gap: 1.5rem; justify-content: flex-start; flex-wrap: wrap;
+            opacity: 0; animation: fadeInUp 1s 0.8s forwards;
+        }
+
+        .btn {
+            padding: 1rem 2.8rem; font-size: 0.875rem; letter-spacing: 2px;
+            text-decoration: none; border: none; cursor: pointer; transition: var(--transition);
+            font-family: var(--sans); font-weight: 400; display: inline-flex; align-items: center; gap: 0.6rem;
+        }
+        .btn-primary { background: var(--gold); color: var(--bg-primary); }
+        .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); box-shadow: 0 10px 30px rgba(201, 169, 97, 0.3); }
+        .btn-outline { background: transparent; color: var(--text-primary); border: 1px solid var(--border-hover); }
+        .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+
+        .hero-scroll {
+            position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%);
+            color: var(--text-muted); font-size: 0.75rem; letter-spacing: 2px;
+            writing-mode: vertical-rl; opacity: 0; animation: fadeIn 1s 1.2s forwards;
+        }
+        .hero-scroll::after {
+            content: ''; display: block; width: 1px; height: 40px; background: var(--gold-dark);
+            margin: 0.8rem auto 0; animation: scrollLine 2s ease-in-out infinite;
+        }
+
+        @keyframes scrollLine { 0%, 100% { transform: scaleY(0.3); transform-origin: top; } 50% { transform: scaleY(1); transform-origin: top; } }
+        @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } from { opacity: 0; transform: translateY(30px); } }
+        @keyframes fadeIn { to { opacity: 1; } }
+
+        section { padding: 7rem 4rem; position: relative; }
+
+        .section-header { text-align: center; margin-bottom: 4rem; }
+        .section-label {
+            font-family: var(--serif-alt); font-size: 1rem; color: var(--gold);
+            letter-spacing: 4px; text-transform: uppercase; margin-bottom: 1rem; display: inline-block;
+        }
+        .section-label::before { content: '\2726'; margin-right: 0.8rem; font-size: 0.8rem; }
+        .section-title {
+            font-family: var(--serif); font-size: clamp(2rem, 4vw, 2.8rem); font-weight: 700;
+            margin-bottom: 1rem; letter-spacing: 1px;
+        }
+        .section-title .accent { color: var(--gold); font-style: italic; font-weight: 400; }
+        .section-desc { color: var(--text-secondary); max-width: 580px; margin: 0 auto; font-size: 1rem; }
+
+        .services { background: var(--bg-secondary); }
+
+        .tier-group { max-width: 1200px; margin: 0 auto 3rem; }
+        .tier-group:last-child { margin-bottom: 0; }
+
+        .tier-header {
+            display: flex; align-items: center; gap: 1.5rem; margin-bottom: 2rem;
+        }
+        .tier-label {
+            font-family: var(--serif); font-size: 1.25rem; color: var(--gold); font-weight: 500;
+            white-space: nowrap;
+        }
+        .tier-desc { color: var(--text-muted); font-size: 0.82rem; white-space: nowrap; }
+        .tier-line { flex: 1; height: 1px; background: var(--border); }
+
+        .services-grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
+        .services-grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; max-width: 780px; margin: 0 auto; }
+
+        .service-card {
+            background: var(--bg-card); padding: 2.2rem 1.8rem; border: 1px solid var(--border);
+            transition: var(--transition); position: relative; overflow: hidden;
+        }
+        .service-card::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 2px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+            transform: scaleX(0); transition: transform 0.5s ease;
+        }
+        .service-card:hover { border-color: var(--border-hover); transform: translateY(-6px); background: #1e1e1e; }
+        .service-card:hover::before { transform: scaleX(1); }
+
+        .service-card.premium {
+            background: var(--bg-card-premium); border-color: var(--border-premium);
+        }
+        .service-card.premium::before { transform: scaleX(1); opacity: 0.5; }
+        .service-card.premium:hover { border-color: var(--gold); background: #221d15; }
+        .service-card.premium:hover::before { opacity: 1; }
+
+        .service-icon {
+            font-family: var(--serif); font-size: 2rem; color: var(--gold);
+            margin-bottom: 1rem; font-weight: 400;
+        }
+        .service-card h3 {
+            font-family: var(--serif); font-size: 1.15rem; margin-bottom: 0.6rem; font-weight: 500; line-height: 1.4;
+        }
+        .service-card p {
+            color: var(--text-secondary); font-size: 0.85rem; line-height: 1.8; margin-bottom: 1rem;
+        }
+
+        .service-condition {
+            font-size: 0.75rem; color: var(--text-muted); margin-bottom: 1rem;
+            padding-bottom: 1rem; border-bottom: 1px solid var(--border);
+            display: flex; align-items: flex-start; gap: 0.4rem; line-height: 1.6;
+        }
+        .service-condition .ci { color: var(--gold); flex-shrink: 0; }
+
+        .service-price {
+            display: flex; align-items: baseline; gap: 0.3rem; flex-wrap: wrap;
+        }
+        .price-original {
+            text-decoration: line-through; color: var(--text-muted); font-size: 0.85rem; margin-right: 0.3rem;
+        }
+        .service-price .currency { color: var(--gold); font-size: 0.85rem; }
+        .service-price .amount { font-family: var(--serif); font-size: 1.5rem; color: var(--gold); font-weight: 700; }
+        .service-price .unit { color: var(--text-muted); font-size: 0.75rem; }
+        .service-price .price-sep { color: var(--text-muted); margin: 0 0.3rem; font-size: 0.75rem; }
+
+        .service-tag {
+            display: inline-block; padding: 0.2rem 0.7rem; background: rgba(201, 169, 97, 0.1);
+            color: var(--gold); font-size: 0.65rem; letter-spacing: 1px; border-radius: 2px; margin-bottom: 1rem;
+        }
+        .service-tag.review { background: rgba(201, 169, 97, 0.2); }
+
+        .story {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 5rem;
+            align-items: center; max-width: 1200px; margin: 0 auto;
+        }
+        .case-box {
+            position: relative; max-height: 620px; overflow-y: auto;
+            background: linear-gradient(135deg, #161616 0%, #0d0d0d 100%);
+            border: 1px solid var(--border); padding: 2.2rem 1.8rem;
+        }
+        .case-box::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at 30% 20%, rgba(201, 169, 97, 0.06) 0%, transparent 50%);
+            pointer-events: none;
+        }
+        .case-box::-webkit-scrollbar { width: 4px; }
+        .case-box::-webkit-scrollbar-track { background: transparent; }
+        .case-box::-webkit-scrollbar-thumb { background: var(--gold-dark); border-radius: 2px; }
+        .case-box-title {
+            font-family: var(--serif); font-size: 1.3rem; color: var(--gold); font-weight: 500;
+            margin-bottom: 0.4rem; position: relative; z-index: 1;
+        }
+        .case-box-subtitle {
+            font-size: 0.78rem; color: var(--text-muted); letter-spacing: 1px;
+            margin-bottom: 1.8rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--border);
+            position: relative; z-index: 1;
+        }
+        .case-item {
+            position: relative; padding: 1rem 0 1rem 1.5rem; margin-bottom: 0.3rem;
+            border-bottom: 1px solid rgba(201, 169, 97, 0.06); z-index: 1;
+            transition: var(--transition);
+        }
+        .case-item:last-child { border-bottom: none; }
+        .case-item::before {
+            content: ''; position: absolute; left: 0; top: 1.3rem; width: 6px; height: 6px;
+            border-radius: 50%; background: var(--gold-dark); transition: var(--transition);
+        }
+        .case-item:hover::before { background: var(--gold); box-shadow: 0 0 8px rgba(201, 169, 97, 0.5); }
+        .case-item:hover { padding-left: 1.8rem; }
+        .case-track {
+            display: inline-block; font-family: var(--serif); font-size: 0.78rem;
+            color: var(--gold); letter-spacing: 1px; margin-bottom: 0.3rem;
+            padding: 0.15rem 0.6rem; background: rgba(201, 169, 97, 0.08); border-radius: 2px;
+        }
+        .case-desc {
+            font-size: 0.85rem; color: var(--text-secondary); line-height: 1.7;
+        }
+        .case-desc .hl { color: var(--text-primary); font-weight: 500; }
+
+        .story-content .section-label, .story-content .section-title { text-align: left; }
+        .story-content .section-header { text-align: left; margin-bottom: 2rem; }
+        .story-text p { color: var(--text-secondary); margin-bottom: 1.5rem; font-size: 0.95rem; line-height: 2; }
+        .story-text p strong { color: var(--text-primary); font-weight: 500; }
+
+        .stat-item .stat-num { font-family: var(--serif); font-size: 2.3rem; color: var(--gold); font-weight: 700; line-height: 1; }
+        .stat-item .stat-num .plus { font-size: 1.3rem; vertical-align: top; }
+        .stat-item .stat-label { color: var(--text-muted); font-size: 0.78rem; letter-spacing: 1px; margin-top: 0.5rem; }
+
+        .contact { background: var(--bg-secondary); }
+        .contact-simple { max-width: 700px; margin: 0 auto; text-align: center; }
+        .contact-wechat-row { display: flex; justify-content: center; gap: 3rem; margin-bottom: 2.5rem; flex-wrap: wrap; }
+        .contact-wechat-card {
+            background: var(--bg-card); border: 1px solid var(--border);
+            padding: 2rem 2.5rem; min-width: 220px; transition: var(--transition);
+        }
+        .contact-wechat-card:hover { border-color: var(--gold); }
+        .contact-wechat-card .ci-icon {
+            font-size: 1.6rem; color: var(--gold); margin-bottom: 0.8rem;
+        }
+        .contact-wechat-card .ci-label {
+            color: var(--text-muted); font-size: 0.72rem; letter-spacing: 1px;
+            text-transform: uppercase; margin-bottom: 0.5rem;
+        }
+        .contact-wechat-card .ci-value {
+            color: var(--gold); font-size: 1.5rem; font-weight: 600;
+            font-family: var(--serif); letter-spacing: 1px;
+        }
+        .contact-extra-row { color: var(--text-muted); font-size: 0.85rem; }
+        .contact-extra-item { margin: 0 0.3rem; }
+        .contact-extra-divider { margin: 0 0.5rem; opacity: 0.3; }
+
+        footer { padding: 3rem 4rem; border-top: 1px solid var(--border); background: var(--bg-primary); }
+
+        /* 底部数据横幅 */
+        .bottom-banner {
+            background: linear-gradient(180deg, #0d0d0d 0%, #0a0a0a 100%);
+            border-top: 2px solid var(--gold);
+            border-bottom: 2px solid var(--gold);
+            padding: 2.8rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .bottom-banner::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(ellipse at 50% 50%, rgba(201, 169, 97, 0.04) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .bottom-banner-inner {
+            position: relative; z-index: 1;
+            max-width: 900px; margin: 0 auto;
+            display: flex; justify-content: center; align-items: center; gap: 5rem;
+        }
+        .bottom-banner .bb-item { text-align: center; }
+        .bottom-banner .bb-num {
+            font-family: var(--serif); font-size: 3rem; color: var(--gold); font-weight: 700; line-height: 1.1;
+            letter-spacing: 2px;
+        }
+        .bottom-banner .bb-num .plus { font-size: 1.5rem; vertical-align: top; }
+        .bottom-banner .bb-label {
+            color: var(--text-secondary); font-size: 0.85rem; letter-spacing: 2px; margin-top: 0.4rem;
+        }
+        .bottom-banner .bb-divider {
+            width: 1px; height: 50px; background: var(--border);
+        }
+
+        @media (max-width: 768px) {
+            .bottom-banner-inner { flex-direction: column; gap: 1.5rem; }
+            .bottom-banner .bb-divider { width: 60px; height: 1px; }
+        }
+        .footer-content { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1.5rem; }
+        .footer-logo { font-family: var(--serif); font-size: 1.2rem; font-weight: 700; color: var(--text-primary); display: flex; align-items: center; gap: 0.5rem; }
+        .footer-logo .dot { width: 6px; height: 6px; background: var(--gold); border-radius: 50%; }
+        .footer-copy { color: var(--text-muted); font-size: 0.78rem; letter-spacing: 1px; }
+        .footer-social { display: flex; gap: 1.5rem; }
+        .footer-social a { color: var(--text-muted); text-decoration: none; font-size: 0.78rem; letter-spacing: 1px; transition: var(--transition); }
+        .footer-social a:hover { color: var(--gold); }
+
+        .reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.8s ease, transform 0.8s ease; }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+        .reveal-delay-1 { transition-delay: 0.15s; }
+        .reveal-delay-2 { transition-delay: 0.3s; }
+        .reveal-delay-3 { transition-delay: 0.45s; }
+
+        @media (max-width: 1100px) {
+            .services-grid-4 { grid-template-columns: repeat(2, 1fr); }
+        }
+        /* ========================================
+           平板 / 小屏笔记本 (≤968px)
+           ======================================== */
+        @media (max-width: 968px) {
+            .navbar, .navbar.scrolled { padding: 1rem 1.5rem; }
+            .nav-menu {
+                position: fixed; top: 0; right: -100%; width: 70%; height: 100vh;
+                background: var(--bg-secondary); flex-direction: column; justify-content: center;
+                padding: 2rem; gap: 2rem; transition: right 0.4s ease; border-left: 1px solid var(--border);
+            }
+            .nav-menu.active { right: 0; }
+            .menu-toggle { display: flex; z-index: 1001; }
+            .menu-toggle.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+            .menu-toggle.active span:nth-child(2) { opacity: 0; }
+            .menu-toggle.active span:nth-child(3) { transform: rotate(-45deg) translate(7px, -6px); }
+            section { padding: 4rem 2rem; }
+
+            /* 英雄区：缩小间距，图片柔化但保留 */
+            .hero { padding: 5rem 2rem 3rem; align-items: center; }
+            .hero-content { flex: 0 1 55%; padding-right: 1rem; }
+            .hero-image { width: 48%; opacity: 0.6; }
+            .hero-image-overlay {
+                background: linear-gradient(to right, var(--bg-primary) 0%, transparent 15%, transparent 100%);
+            }
+            .hero-tagline { font-size: 0.95rem; letter-spacing: 4px; }
+            .hero-subtitle { font-size: 0.95rem; line-height: 1.8; max-width: 100%; }
+
+            /* 产品：保持两列 */
+            .services-grid-4 { grid-template-columns: repeat(2, 1fr); }
+
+            /* 品牌故事：叠放 */
+            .story { grid-template-columns: 1fr; gap: 2.5rem; }
+            .case-box { max-height: 480px; }
+
+            .footer-content { flex-direction: column; text-align: center; }
+        }
+
+        /* ========================================
+           手机 (≤600px)
+           ======================================== */
+        @media (max-width: 600px) {
+            /* 导航 */
+            .navbar, .navbar.scrolled { padding: 0.8rem 1.2rem; }
+            .nav-logo { font-size: 1.15rem; }
+            .nav-logo .sub { display: none; }
+
+            /* 英雄区：顶部留空更少，图片作为氛围底图 */
+            .hero {
+                min-height: auto; padding: 5rem 1.2rem 3.5rem;
+                flex-direction: column; text-align: center;
+                position: relative; overflow: hidden;
+            }
+            .hero-content { flex: 1; max-width: 100%; padding: 0; position: relative; z-index: 3; }
+            .hero-image {
+                position: absolute; width: 100%; height: 100%;
+                inset: 0; opacity: 0.85;
+                z-index: 1;
+            }
+            .hero-image img {
+                width: 100%; height: 100%; object-fit: cover; object-position: center 25%;
+                -webkit-mask-image: none;
+                mask-image: none;
+            }
+            .hero-image-overlay {
+                position: absolute; inset: 0; z-index: 2;
+                background:
+                    linear-gradient(to bottom, rgba(10, 10, 10, 0.85) 0%, rgba(10, 10, 10, 0.4) 25%, rgba(10, 10, 10, 0.25) 55%, rgba(10, 10, 10, 0.7) 100%);
+                pointer-events: none;
+            }
+            .hero-tagline { font-size: 0.85rem; letter-spacing: 3px; }
+            .hero-tagline::before, .hero-tagline::after { content: '·'; margin: 0 0.6rem; opacity: 0.5; }
+            .hero-title { font-size: clamp(2rem, 7vw, 2.6rem); line-height: 1.3; margin-bottom: 0.3rem; }
+            .hero-highlight { font-size: clamp(2rem, 7vw, 2.6rem); line-height: 1.3; }
+            .hero-subtitle { font-size: 0.92rem; margin-left: auto; margin-right: auto; max-width: 340px; }
+            .hero-buttons { flex-direction: column; width: 100%; max-width: 320px; margin: 0 auto; }
+            .btn { width: 100%; justify-content: center; font-size: 0.85rem; padding: 0.85rem 2rem; }
+
+            /* 全局板块 */
+            section { padding: 3.5rem 1.2rem; }
+
+            /* 产品：入门精选保持两列，进阶/尊享保持两列 */
+            .services-grid-4 { grid-template-columns: repeat(2, 1fr); gap: 0.8rem; }
+            .services-grid-2 { grid-template-columns: repeat(2, 1fr); gap: 0.8rem; }
+            .service-card { padding: 1.2rem 1rem; }
+            .service-card h3 { font-size: 1rem; margin: 0.4rem 0 0.3rem; }
+            .service-card p { font-size: 0.78rem; line-height: 1.6; -webkit-line-clamp: 2; display: -webkit-box; -webkit-box-orient: vertical; overflow: hidden; }
+            .service-condition { font-size: 0.68rem; }
+            .service-price .amount { font-size: 1.4rem; }
+            .service-tag { font-size: 0.68rem; padding: 0.2rem 0.55rem; }
+            .service-icon { width: 28px; height: 28px; font-size: 0.7rem; margin-bottom: 0.4rem; }
+            .tier-label { font-size: 0.9rem; }
+            .tier-desc { font-size: 0.72rem; }
+
+            /* 品牌故事 */
+            .story { grid-template-columns: 1fr; gap: 2rem; }
+            .case-box { max-height: 400px; padding: 1.2rem; }
+            .case-box-title { font-size: 0.95rem; }
+            .case-item .case-track { font-size: 0.68rem; }
+            .case-item .case-desc { font-size: 0.8rem; line-height: 1.7; }
+
+            /* 联系方式 */
+            .contact-wechat-row { flex-direction: column; align-items: center; gap: 1.2rem; }
+            .contact-extra-row { display: flex; flex-direction: column; gap: 0.5rem; }
+            .contact-extra-divider { display: none; }
+
+            /* 底部 */
+            .bottom-banner { padding: 2rem 1rem; }
+            .bottom-banner-inner { flex-direction: column; gap: 1.2rem; }
+            .bottom-banner .bb-divider { width: 50px; height: 1px; }
+            .bottom-banner .bb-num { font-size: 2.2rem; }
+            footer { padding: 2rem 1.2rem; }
+            .footer-content { flex-direction: column; text-align: center; gap: 1rem; }
+
+            /* 滚动指示器：手机端隐藏 */
+            .hero-scroll { display: none; }
+
+            /* 导航 CTA 按钮适配 */
+            .nav-cta { padding: 0.5rem 1.2rem; font-size: 0.75rem; }
+
+            /* 音乐按钮：缩小 + 贴近边缘 */
+            .music-player { bottom: 1.2rem; right: 1.2rem; }
+            .music-toggle { width: 44px; height: 44px; }
+            .music-toggle svg { width: 18px; height: 18px; }
+            .music-label { display: none; }
+        }
+
+        /* ========================================
+           极小屏 (≤380px)
+           ======================================== */
+        @media (max-width: 380px) {
+            .services-grid-4, .services-grid-2 { grid-template-columns: 1fr; gap: 0.7rem; }
+            .service-card { max-width: 320px; margin: 0 auto; }
+            .service-card p { -webkit-line-clamp: unset; display: block; }
+            .hero { padding: 4.5rem 1rem 3rem; }
+            .hero-title { font-size: 1.85rem; }
+            .hero-highlight { font-size: 1.85rem; }
+            .hero-subtitle { font-size: 0.85rem; }
+            section { padding: 3rem 1rem; }
+        }
+
+        /* ===== 背景音乐播放器 ===== */
+        .music-player {
+            position: fixed; bottom: 2rem; right: 2rem; z-index: 999;
+            display: flex; align-items: center; gap: 0.75rem;
+            opacity: 0; transform: translateY(20px);
+            animation: fadeInUp 1s 1.5s forwards;
+        }
+        .music-toggle {
+            width: 52px; height: 52px; border-radius: 50%;
+            background: rgba(201, 169, 97, 0.12); border: 1px solid var(--gold);
+            color: var(--gold); cursor: pointer; display: flex; align-items: center; justify-content: center;
+            transition: var(--transition); backdrop-filter: blur(10px);
+            position: relative; flex-shrink: 0;
+        }
+        .music-toggle:hover {
+            background: var(--gold); color: var(--bg-primary);
+            box-shadow: 0 0 20px rgba(201, 169, 97, 0.4); transform: scale(1.08);
+        }
+        .music-toggle svg { width: 22px; height: 22px; }
+        .music-toggle.playing svg { animation: spin 3s linear infinite; }
+        .music-toggle .pulse-ring {
+            position: absolute; inset: -4px; border-radius: 50%;
+            border: 1px solid var(--gold); opacity: 0; pointer-events: none;
+        }
+        .music-toggle.playing .pulse-ring { animation: pulseRing 2s ease-out infinite; }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        @keyframes pulseRing {
+            0% { transform: scale(0.9); opacity: 0.6; }
+            100% { transform: scale(1.6); opacity: 0; }
+        }
+        .music-label {
+            font-size: 0.75rem; color: var(--text-muted); letter-spacing: 1px;
+            background: rgba(10, 10, 10, 0.7); padding: 0.4rem 0.9rem; border-radius: 20px;
+            border: 1px solid var(--border); backdrop-filter: blur(8px); white-space: nowrap;
+        }
+        @media (max-width: 600px) {
+            .music-label { display: none; }
+            .music-player { bottom: 1.2rem; right: 1.2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar" id="navbar">
+        <a href="#" class="nav-logo">
+            <span class="dot"></span>
+            超高价商学院
+            <span class="sub">HVB</span>
+        </a>
+        <ul class="nav-menu" id="navMenu">
+            <li><a href="#hero" class="active">首页</a></li>
+            <li><a href="#services">服务</a></li>
+            <li><a href="#story">品牌故事</a></li>
+            <li><a href="#contact">联系我们</a></li>
+        </ul>
+        <button class="menu-toggle" id="menuToggle" aria-label="菜单">
+            <span></span><span></span><span></span>
+        </button>
+    </nav>
+
+    <section class="hero" id="hero">
+        <div class="hero-content">
+            <p class="hero-tagline">High-value Business Schools</p>
+            <h1 class="hero-title">让你的产品</h1>
+            <div class="hero-highlight">卖天价</div>
+            <p class="hero-subtitle">
+                超高价成交系统创始人 · 总裁夫妇<br>
+                带你用最简单的方法，实现利益最大化！
+            </p>
+            <div class="hero-buttons">
+                <a href="#services" class="btn btn-primary">探索服务 →</a>
+                <a href="#story" class="btn btn-outline">了解品牌</a>
+            </div>
+        </div>
+        <div class="hero-image">
+            <img src="双导师海报.jpg" alt="总裁夫妇">
+            <div class="hero-image-overlay"></div>
+        </div>
+        <div class="hero-scroll">SCROLL</div>
+    </section>
+
+    <section class="services" id="services">
+        <div class="section-header reveal">
+            <span class="section-label">服务体系</span>
+            <h2 class="section-title">从入门到<span class="accent">私董会</span></h2>
+            <p class="section-desc">7 项精品服务，覆盖商业咨询、文案实战、AI 提效、私教陪跑全链路，总有一款适合你当前阶段。</p>
+        </div>
+
+        <div class="tier-group reveal">
+            <div class="tier-header">
+                <span class="tier-label">入门精选</span>
+                <span class="tier-desc">零门槛，快速起步</span>
+                <span class="tier-line"></span>
+            </div>
+            <div class="services-grid-4">
+                <div class="service-card">
+                    <div class="service-icon">I</div>
+                    <span class="service-tag">线上咨询</span>
+                    <h3>线上商业咨询（30分钟）</h3>
+                    <p>根据你当前遇到的商业问题，做梳理给方案。</p>
+                    <div class="service-condition"><span class="ci">✓</span> 零门槛 · 需提前 1 天预约</div>
+                    <div class="service-price">
+                        <span class="price-original">¥1980</span>
+                        <span class="currency">¥</span>
+                        <span class="amount">500</span>
+                        <span class="unit">/ 次</span>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">II</div>
+                    <span class="service-tag">实体书</span>
+                    <h3>《超高价文案指南》</h3>
+                    <p>新手快速入门文案的葵花宝典，让你的文案有系统框架支撑。</p>
+                    <div class="service-condition"><span class="ci">✓</span> 零门槛 · 附赠亲笔寄语 + 书友社群</div>
+                    <div class="service-price">
+                        <span class="currency">¥</span>
+                        <span class="amount">399</span>
+                        <span class="unit">/ 本</span>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">III</div>
+                    <span class="service-tag">年度社群</span>
+                    <h3>AI 提效年度营</h3>
+                    <p>进入一个有氛围的圈子，年度社群陪伴服务。</p>
+                    <div class="service-condition"><span class="ci">✓</span> 零门槛 · 全年陪伴</div>
+                    <div class="service-price">
+                        <span class="currency">¥</span>
+                        <span class="amount">999</span>
+                        <span class="unit">/ 年</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="tier-group reveal">
+            <div class="tier-header">
+                <span class="tier-label">实战进阶</span>
+                <span class="tier-desc">需审核，深度实战教学</span>
+                <span class="tier-line"></span>
+            </div>
+            <div class="services-grid-2">
+                <div class="service-card">
+                    <div class="service-icon">IV</div>
+                    <span class="service-tag review">需审核</span>
+                    <h3>小红书落地私教</h3>
+                    <p>带你用 35 天跑通，小红书起号、养号、发笔记、引流变现的全链路闭环。</p>
+                    <div class="service-condition"><span class="ci">◆</span> 需有成熟定位和产品 · 需审核</div>
+                    <div class="service-price">
+                        <span class="currency">¥</span>
+                        <span class="amount">3,980</span>
+                        <span class="unit">/ 期</span>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">V</div>
+                    <span class="service-tag review">需审核</span>
+                    <h3>AI 实战落地班</h3>
+                    <p>围绕你当前的商业问题，借助 AI 提效完善，二对多形式教学，每周固定两场答疑。</p>
+                    <div class="service-condition"><span class="ci">◆</span> 需有成熟定位和产品 · 需审核</div>
+                    <div class="service-price">
+                        <span class="currency">¥</span>
+                        <span class="amount">3,980</span>
+                        <span class="unit">/ 期</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="tier-group reveal">
+            <div class="tier-header">
+                <span class="tier-label">尊享私教</span>
+                <span class="tier-desc">二对一专属交付，手把手辅导</span>
+                <span class="tier-line"></span>
+            </div>
+            <div class="services-grid-2">
+                <div class="service-card premium">
+                    <div class="service-icon">VI</div>
+                    <span class="service-tag review">需审核</span>
+                    <h3>全域陪跑私教班</h3>
+                    <p>围绕你当前的商业问题，全方位辅导，二对一私密交付，手把手改文案一个月。</p>
+                    <div class="service-condition"><span class="ci">◆</span> 需有成熟定位和产品 · 能轻松支付学费 · 需审核</div>
+                    <div class="service-price">
+                        <span class="currency">¥</span>
+                        <span class="amount">16,800</span>
+                        <span class="unit">/ 期</span>
+                    </div>
+                </div>
+                <div class="service-card premium">
+                    <div class="service-icon">VII</div>
+                    <span class="service-tag review">需审核</span>
+                    <h3>年度私董会</h3>
+                    <p>超高价品牌顶配服务，年度私董会深度陪跑。</p>
+                    <div class="service-condition"><span class="ci">◆</span> 需先通过月度私教考核 · 付费前需靠方法赚到学费 · 需审核</div>
+                    <div class="service-price">
+                        <span class="currency">¥</span>
+                        <span class="amount">75,000</span>
+                        <span class="unit">/ 年</span>
+                        <span class="price-sep">·</span>
+                        <span class="currency">¥</span>
+                        <span class="amount">100,000</span>
+                        <span class="unit">/ 两年</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="story-section" id="story">
+        <div class="story">
+            <div class="case-box reveal">
+                <div class="case-box-title">学员实战案例</div>
+                <div class="case-box-subtitle">跨越 8 大行业，真实可验证的交付成果</div>
+                <div class="case-item">
+                    <span class="case-track">大健康赛道</span>
+                    <p class="case-desc">团队长经超高价系统提炼，产品客单价<span class="hl">提升 170 倍</span>，建立清晰个人品牌定位</p>
+                </div>
+                <div class="case-item">
+                    <span class="case-track">农产品赛道</span>
+                    <p class="case-desc">都市白领借助 AI 文案布局，仅凭一条朋友圈即完成<span class="hl">1000+ 斤黄桃预售</span></p>
+                </div>
+                <div class="case-item">
+                    <span class="case-track">私密健康赛道</span>
+                    <p class="case-desc">品牌创始人在产品研发阶段，通过朋友圈布局成功吸引行业头部<span class="hl">千万级投资</span></p>
+                </div>
+                <div class="case-item">
+                    <span class="case-track">美业教育赛道</span>
+                    <p class="case-desc">合伙人运用超高价成交系统，实现<span class="hl">业绩 30 倍增长</span>并斩获省级总代</p>
+                </div>
+                <div class="case-item">
+                    <span class="case-track">天赋能量赛道</span>
+                    <p class="case-desc">在校研究生仅用 <span class="hl">3 通电话即完成 15 万</span>高客单价成交</p>
+                </div>
+                <div class="case-item">
+                    <span class="case-track">个体创业赛道</span>
+                    <p class="case-desc">航司职员<span class="hl">不到一个月</span>即实现副业收入超越主业</p>
+                </div>
+                <div class="case-item">
+                    <span class="case-track">个体创业赛道</span>
+                    <p class="case-desc">短视频流量博主运用该方法帮助客户实现<span class="hl">百倍增长</span></p>
+                </div>
+                <div class="case-item">
+                    <span class="case-track">金融保险赛道</span>
+                    <p class="case-desc">长期未开单的学员学习数日后即获客户<span class="hl">主动上门并快速成交</span></p>
+                </div>
+                <div class="case-item">
+                    <span class="case-track">个体创业赛道</span>
+                    <p class="case-desc">铁路公职人员业余开展线上副业，从零起步到<span class="hl">找到清晰方向并成功变现</span></p>
+                </div>
+                <div class="case-item">
+                    <span class="case-track">心理能量赛道</span>
+                    <p class="case-desc">品牌合伙人运用超高价成交系统，<span class="hl">业绩增长超 200 倍</span></p>
+                </div>
+                <div class="case-item">
+                    <span class="case-track">大健康赛道</span>
+                    <p class="case-desc">困境中的门店主通过超高价成交系统实现<span class="hl">业绩正向增长</span>，重燃经营信心</p>
+                </div>
+            </div>
+            <div class="story-content reveal reveal-delay-1">
+                <div class="section-header">
+                    <span class="section-label">品牌故事</span>
+                    <h2 class="section-title">源于<span class="accent">百万投入</span>，忠于落地效果</h2>
+                </div>
+                <div class="story-text">
+                    <p><strong>超高价商学院</strong>，诞生于 2022 年 9 月 16 日。</p>
+                    <p>品牌前身是「净茹文化」，后经净茹老师引荐，词敏教练拜师文案杀手创始人黄振宇老师门下，品牌正式升级为「超高价商学院」，从此开启了<strong>双导师交付模式</strong>。</p>
+                    <p>在行业内，两位老师被亲切地称为<strong>「总裁夫妇」</strong>，因擅长做超高价指导，被圈内授予<strong>「超高价成交系统创始人」</strong>。</p>
+                    <p>两位老师在知识付费领域累计付费投入超百万。正因为参加过太多不同品类的课程，最终发现——真正适合自己、能快速拿到结果的，才叫<strong>有效的学习</strong>。</p>
+                    <p>因此，超高价商学院很少卖大课或分享课，更多以<strong>二对一陪跑</strong>的形式进行服务。因为他们知道，这样的交付方式，更利于学员的落地。</p>
+                    <p>如果你也想让自己的产品卖天价，那就来找<strong>超高价商学院</strong>。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact" id="contact">
+        <div class="section-header reveal">
+            <span class="section-label">联系我们</span>
+            <h2 class="section-title">开启你的<span class="accent">超高价</span>之路</h2>
+            <p class="section-desc">如果你想咨询以上任意服务，可以直接通过以下方式联系两位老师。</p>
+        </div>
+        <div class="contact-simple reveal">
+            <div class="contact-wechat-row">
+                <div class="contact-wechat-card">
+                    <div class="ci-icon">❖</div>
+                    <div class="ci-label">微信咨询</div>
+                    <div class="ci-value">HCM3337</div>
+                </div>
+                <div class="contact-wechat-card">
+                    <div class="ci-icon">❖</div>
+                    <div class="ci-label">微信咨询</div>
+                    <div class="ci-value">jr927268</div>
+                </div>
+            </div>
+            <div class="contact-extra-row">
+                <span class="contact-extra-item">📧 2934653517@qq.com</span>
+                <span class="contact-extra-divider">|</span>
+                <span class="contact-extra-item">📺 视频号：黄词敏king-总裁夫妇</span>
+                <span class="contact-extra-divider">|</span>
+                <span class="contact-extra-item">📺 净茹-总裁夫妇</span>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <span class="dot"></span>
+                超高价商学院
+            </div>
+            <div class="footer-social">
+                <a href="#">公众号</a>
+                <a href="#">视频号</a>
+                <a href="#">微信</a>
+                <a href="#">小红书</a>
+            </div>
+            <div class="footer-copy">© 2026 超高价商学院 High-value Business Schools. All Rights Reserved.</div>
+        </div>
+    </footer>
+
+    <!-- 底部数据横幅 -->
+    <section class="bottom-banner reveal">
+        <div class="bottom-banner-inner">
+            <div class="bb-item">
+                <div class="bb-num">深圳</div>
+                <div class="bb-label">IP扎根</div>
+            </div>
+            <div class="bb-divider"></div>
+            <div class="bb-item">
+                <div class="bb-num">过千位</div>
+                <div class="bb-label">累计服务学员</div>
+            </div>
+            <div class="bb-divider"></div>
+            <div class="bb-item">
+                <div class="bb-num">2<span class="plus">对1</span></div>
+                <div class="bb-label">核心交付模式</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 背景音乐播放器 -->
+    <div class="music-player">
+        <span class="music-label">点击播放品牌音乐</span>
+        <button class="music-toggle" id="musicToggle" aria-label="播放/暂停背景音乐">
+            <span class="pulse-ring"></span>
+            <svg id="musicIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/>
+            </svg>
+        </button>
+        <audio id="bgmAudio" loop preload="none">
+            <source src="bgm.mp3" type="audio/mpeg">
+        </audio>
+    </div>
+
+    <script>
+        const navbar = document.getElementById('navbar');
+        const navLinks = document.querySelectorAll('.nav-menu a:not(.nav-cta)');
+        const sections = document.querySelectorAll('section[id]');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 60) { navbar.classList.add('scrolled'); }
+            else { navbar.classList.remove('scrolled'); }
+            let current = '';
+            sections.forEach(section => {
+                const top = section.offsetTop - 120;
+                if (window.scrollY >= top) { current = section.getAttribute('id'); }
+            });
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + current) { link.classList.add('active'); }
+            });
+        });
+
+        const menuToggle = document.getElementById('menuToggle');
+        const navMenu = document.getElementById('navMenu');
+        menuToggle.addEventListener('click', () => {
+            menuToggle.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+        navMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                menuToggle.classList.remove('active');
+                navMenu.classList.remove('active');
+            });
+        });
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) { entry.target.classList.add('visible'); }
+            });
+        }, { threshold: 0.15 });
+        document.querySelectorAll('.reveal').forEach(el => { observer.observe(el); });
+
+        // ===== 背景音乐控制 =====
+        const musicToggle = document.getElementById('musicToggle');
+        const bgmAudio = document.getElementById('bgmAudio');
+        const musicLabel = document.querySelector('.music-label');
+        let isPlaying = false;
+
+        musicToggle.addEventListener('click', () => {
+            if (isPlaying) {
+                bgmAudio.pause();
+                musicToggle.classList.remove('playing');
+                musicLabel.textContent = '点击播放品牌音乐';
+                isPlaying = false;
+            } else {
+                bgmAudio.play().then(() => {
+                    musicToggle.classList.add('playing');
+                    musicLabel.textContent = '正在播放';
+                    isPlaying = true;
+                }).catch(err => {
+                    musicLabel.textContent = '点击重试';
+                });
+            }
+        });
+        bgmAudio.volume = 0.4;
+    </script>
+</body>
+</html>
