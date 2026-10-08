@@ -213,7 +213,7 @@
         .tier-desc { color: var(--text-muted); font-size: 0.82rem; white-space: nowrap; }
         .tier-line { flex: 1; height: 1px; background: var(--border); }
 
-        .services-grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
+        .services-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
         .services-grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; max-width: 780px; margin: 0 auto; }
 
         .service-card {
@@ -254,7 +254,7 @@
         .service-condition .ci { color: var(--gold); flex-shrink: 0; }
 
         .service-price {
-            display: flex; align-items: baseline; gap: 0.3rem; flex-wrap: wrap;
+            display: flex; align-items: baseline; gap: 0.3rem; flex-wrap: nowrap; white-space: nowrap;
         }
         .price-original {
             text-decoration: line-through; color: var(--text-muted); font-size: 0.85rem; margin-right: 0.3rem;
@@ -405,7 +405,7 @@
         .reveal-delay-3 { transition-delay: 0.45s; }
 
         @media (max-width: 1100px) {
-            .services-grid-4 { grid-template-columns: repeat(2, 1fr); }
+            .services-grid-3 { grid-template-columns: repeat(3, 1fr); }
         }
         /* ========================================
            平板 / 小屏笔记本 (≤968px)
@@ -435,7 +435,7 @@
             .hero-subtitle { font-size: 0.95rem; line-height: 1.8; max-width: 100%; }
 
             /* 产品：保持两列 */
-            .services-grid-4 { grid-template-columns: repeat(2, 1fr); }
+            .services-grid-3 { grid-template-columns: repeat(2, 1fr); }
 
             /* 品牌故事：叠放 */
             .story { grid-template-columns: 1fr; gap: 2.5rem; }
@@ -487,9 +487,9 @@
             /* 全局板块 */
             section { padding: 3.5rem 1.2rem; }
 
-            /* 产品：入门精选保持两列，进阶/尊享保持两列 */
-            .services-grid-4 { grid-template-columns: repeat(2, 1fr); gap: 0.8rem; }
-            .services-grid-2 { grid-template-columns: repeat(2, 1fr); gap: 0.8rem; }
+            /* 产品：手机端单列，保证价格一行展示不折行 */
+            .services-grid-3 { grid-template-columns: 1fr; gap: 0.8rem; }
+            .services-grid-2 { grid-template-columns: 1fr; gap: 0.8rem; }
             .service-card { padding: 1.2rem 1rem; }
             .service-card h3 { font-size: 1rem; margin: 0.4rem 0 0.3rem; }
             .service-card p { font-size: 0.78rem; line-height: 1.6; -webkit-line-clamp: 2; display: -webkit-box; -webkit-box-orient: vertical; overflow: hidden; }
@@ -537,7 +537,7 @@
            极小屏 (≤380px)
            ======================================== */
         @media (max-width: 380px) {
-            .services-grid-4, .services-grid-2 { grid-template-columns: 1fr; gap: 0.7rem; }
+            .services-grid-3, .services-grid-2 { grid-template-columns: 1fr; gap: 0.7rem; }
             .service-card { max-width: 320px; margin: 0 auto; }
             .service-card p { -webkit-line-clamp: unset; display: block; }
             .hero { padding: 4.5rem 1rem 3rem; }
@@ -641,7 +641,7 @@
                 <span class="tier-desc">零门槛，快速起步</span>
                 <span class="tier-line"></span>
             </div>
-            <div class="services-grid-4">
+            <div class="services-grid-3">
                 <div class="service-card">
                     <div class="service-icon">I</div>
                     <span class="service-tag">咨询服务</span>
