@@ -215,6 +215,9 @@
 
         .services-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
         .services-grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; max-width: 780px; margin: 0 auto; }
+        /* 5卡弹性布局：桌面 3+2 居中，避免右侧留空 */
+        .services-grid-flex { display: flex; flex-wrap: wrap; justify-content: center; gap: 1.5rem; }
+        .services-grid-flex .service-card { flex: 0 0 calc((100% - 3rem) / 3); }
 
         .service-card {
             background: var(--bg-card); padding: 2.2rem 1.8rem; border: 1px solid var(--border);
@@ -437,6 +440,7 @@
 
             /* 产品：保持两列 */
             .services-grid-3 { grid-template-columns: repeat(2, 1fr); }
+            .services-grid-flex .service-card { flex: 0 0 calc((100% - 1.5rem) / 2); }
 
             /* 品牌故事：叠放 */
             .story { grid-template-columns: 1fr; gap: 2.5rem; }
@@ -491,6 +495,8 @@
             /* 产品：手机端单列，保证价格一行展示不折行 */
             .services-grid-3 { grid-template-columns: 1fr; gap: 0.8rem; }
             .services-grid-2 { grid-template-columns: 1fr; gap: 0.8rem; }
+            .services-grid-flex { gap: 0.8rem; }
+            .services-grid-flex .service-card { flex: 1 1 100%; }
             .service-card { padding: 1.2rem 1rem; }
             .service-card h3 { font-size: 1rem; margin: 0.4rem 0 0.3rem; }
             .service-card p { font-size: 0.78rem; line-height: 1.6; -webkit-line-clamp: 2; display: -webkit-box; -webkit-box-orient: vertical; overflow: hidden; }
@@ -539,6 +545,7 @@
            ======================================== */
         @media (max-width: 380px) {
             .services-grid-3, .services-grid-2 { grid-template-columns: 1fr; gap: 0.7rem; }
+            .services-grid-flex { gap: 0.7rem; }
             .service-card { max-width: 320px; margin: 0 auto; }
             .service-card p { -webkit-line-clamp: unset; display: block; }
             .hero { padding: 4.5rem 1rem 3rem; }
@@ -642,7 +649,7 @@
                 <span class="tier-desc">零门槛，快速起步</span>
                 <span class="tier-line"></span>
             </div>
-            <div class="services-grid-3">
+            <div class="services-grid-flex">
                 <div class="service-card">
                     <div class="service-icon">I</div>
                     <span class="service-tag">咨询服务</span>
@@ -694,6 +701,32 @@
                         <span class="unit">/ 年</span>
                     </div>
                 </div>
+                <div class="service-card">
+                    <div class="service-icon">IV</div>
+                    <span class="service-tag">5天实战</span>
+                    <h3>闪电成交销冠营</h3>
+                    <p>5 天带练：自然破冰、建立信任、挖掘需求、匹配方案、推进成交。带着真实客户与聊天记录来实操，推动至少 3 个真实客户进入成交进程，并梳理一次高客单产品成交路径。</p>
+                    <div class="service-condition"><span class="ci">✓</span> 零门槛 · 腾讯会议 + 社群指导</div>
+                    <div class="service-price">
+                        <span class="price-original">¥1680</span>
+                        <span class="currency">¥</span>
+                        <span class="amount">499</span>
+                        <span class="unit">/ 期</span>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">V</div>
+                    <span class="service-tag">7天实战</span>
+                    <h3>小红书爆款起号营</h3>
+                    <p>7 天 AI 实战带练：一对一规划精准吸粉的账号方向，带你从 0 到 1 启动小红书、快速激活流量，揭秘三个流量密码，教你 3-5 分钟用 AI 生成一篇优质笔记。</p>
+                    <div class="service-condition"><span class="ci">✓</span> 零门槛 · 一对一规划 · 总裁夫妇指导</div>
+                    <div class="service-price">
+                        <span class="price-original">¥1380</span>
+                        <span class="currency">¥</span>
+                        <span class="amount">399</span>
+                        <span class="unit">/ 期</span>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -705,7 +738,7 @@
             </div>
             <div class="services-grid-2">
                 <div class="service-card">
-                    <div class="service-icon">IV</div>
+                    <div class="service-icon">VI</div>
                     <span class="service-tag review">需审核</span>
                     <h3>小红书实战落地班</h3>
                     <p>带你用 35 天跑通：小红书起号、养号、发笔记、引流到私域的全链路闭环，二对多集体轻私教级交付，让你的问题得到针对性解答的同时，还更有一起学习探讨的氛围。</p>
@@ -718,7 +751,7 @@
                     </div>
                 </div>
                 <div class="service-card">
-                    <div class="service-icon">V</div>
+                    <div class="service-icon">VII</div>
                     <span class="service-tag review">需审核</span>
                     <h3>AI 实战落地班</h3>
                     <p>围绕你当前的商业问题，借助 AI 提效完善，并教你搭建一套好用的智能体，二对多形式教学，每周固定两场答疑。</p>
@@ -741,7 +774,7 @@
             </div>
             <div class="services-grid-3">
                 <div class="service-card premium">
-                    <div class="service-icon">VI</div>
+                    <div class="service-icon">VIII</div>
                     <span class="service-tag review">需审核</span>
                     <h3>全域陪跑私教班</h3>
                     <p>围绕你当前的商业问题，全方位辅导，二对一私密交付，手把手改文案一个月。</p>
@@ -754,7 +787,7 @@
                     </div>
                 </div>
                 <div class="service-card premium">
-                    <div class="service-icon">VII</div>
+                    <div class="service-icon">IX</div>
                     <span class="service-tag review">需审核</span>
                     <h3>内外富足总裁班</h3>
                     <p>超高价品牌顶配服务，年度总裁班深度陪跑，除了学习技能，还有资源共享。</p>
@@ -770,7 +803,7 @@
                     </div>
                 </div>
                 <div class="service-card premium">
-                    <div class="service-icon">VIII</div>
+                    <div class="service-icon">X</div>
                     <span class="service-tag review">需审核</span>
                     <h3>项目操盘</h3>
                     <p>从你的产品与定价体系设计、成交链路与私域 SOP 搭建、内容获客到私域转化的全流程操盘、关键客户谈判亲自下场、每周经营数据复盘，服务期间全套打法为你所用。</p>
