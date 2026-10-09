@@ -2,7 +2,7 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>超高价商学院 · High-value Business Schools</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -30,7 +30,7 @@
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
-        html { scroll-behavior: smooth; }
+        html { scroll-behavior: smooth; overflow-x: hidden; }
 
         body {
             background: var(--bg-primary);
@@ -541,7 +541,7 @@
             .service-card.delisted::after { font-size: 0.72rem; right: 0.8rem; bottom: 0.9rem; padding: 0.25rem 0.6rem; letter-spacing: 2px; }
             .service-card.lowstock::after, .service-card.pricealert::after { font-size: 0.72rem; right: 0.8rem; bottom: 0.9rem; padding: 0.25rem 0.6rem; letter-spacing: 2px; }
             .tier-label { font-size: 0.9rem; }
-            .tier-desc { font-size: 0.72rem; }
+            .tier-desc { font-size: 0.72rem; white-space: normal; }
 
             /* 品牌故事 */
             .story { grid-template-columns: 1fr; gap: 2rem; }
