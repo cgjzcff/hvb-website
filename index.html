@@ -250,6 +250,17 @@
             background: rgba(153, 153, 153, 0.08);
         }
 
+        /* 库存紧张：右下角红色警示章，卡片其余呈现不变 */
+        .service-card.lowstock::after {
+            content: '库存已不多';
+            position: absolute; right: 1rem; bottom: 1.2rem;
+            padding: 0.35rem 0.9rem;
+            border: 2px solid #ff5a4e; border-radius: 8px;
+            color: #ff5a4e; font-size: 0.85rem; font-weight: 700;
+            letter-spacing: 3px; transform: rotate(-12deg);
+            background: rgba(255, 90, 78, 0.08);
+        }
+
         .service-icon {
             font-family: var(--serif); font-size: 2rem; color: var(--gold);
             margin-bottom: 1rem; font-weight: 400;
@@ -517,6 +528,7 @@
             .service-tag { font-size: 0.68rem; padding: 0.2rem 0.55rem; }
             .service-icon { width: 28px; height: 28px; font-size: 0.7rem; margin-bottom: 0.4rem; }
             .service-card.delisted::after { font-size: 0.72rem; right: 0.8rem; bottom: 0.9rem; padding: 0.25rem 0.6rem; letter-spacing: 2px; }
+            .service-card.lowstock::after { font-size: 0.72rem; right: 0.8rem; bottom: 0.9rem; padding: 0.25rem 0.6rem; letter-spacing: 2px; }
             .tier-label { font-size: 0.9rem; }
             .tier-desc { font-size: 0.72rem; }
 
@@ -688,7 +700,7 @@
                         <span class="unit">/ 次（线下3小时下午茶）</span>
                     </div>
                 </div>
-                <div class="service-card">
+                <div class="service-card lowstock">
                     <div class="service-icon">II</div>
                     <span class="service-tag">实体书</span>
                     <h3>《超高价文案指南》</h3>
