@@ -261,6 +261,17 @@
             background: rgba(255, 90, 78, 0.08);
         }
 
+        /* 特惠时限：右下角红色警示章 */
+        .service-card.pricealert::after {
+            content: '随时恢复原价';
+            position: absolute; right: 1rem; bottom: 1.2rem;
+            padding: 0.35rem 0.9rem;
+            border: 2px solid #ff5a4e; border-radius: 8px;
+            color: #ff5a4e; font-size: 0.85rem; font-weight: 700;
+            letter-spacing: 3px; transform: rotate(-12deg);
+            background: rgba(255, 90, 78, 0.08);
+        }
+
         .service-icon {
             font-family: var(--serif); font-size: 2rem; color: var(--gold);
             margin-bottom: 1rem; font-weight: 400;
@@ -528,7 +539,7 @@
             .service-tag { font-size: 0.68rem; padding: 0.2rem 0.55rem; }
             .service-icon { width: 28px; height: 28px; font-size: 0.7rem; margin-bottom: 0.4rem; }
             .service-card.delisted::after { font-size: 0.72rem; right: 0.8rem; bottom: 0.9rem; padding: 0.25rem 0.6rem; letter-spacing: 2px; }
-            .service-card.lowstock::after { font-size: 0.72rem; right: 0.8rem; bottom: 0.9rem; padding: 0.25rem 0.6rem; letter-spacing: 2px; }
+            .service-card.lowstock::after, .service-card.pricealert::after { font-size: 0.72rem; right: 0.8rem; bottom: 0.9rem; padding: 0.25rem 0.6rem; letter-spacing: 2px; }
             .tier-label { font-size: 0.9rem; }
             .tier-desc { font-size: 0.72rem; }
 
@@ -735,7 +746,7 @@
                         <span class="unit">/ 666套</span>
                     </div>
                 </div>
-                <div class="service-card">
+                <div class="service-card pricealert">
                     <div class="service-icon">IV</div>
                     <span class="service-tag">7天实战</span>
                     <h3>闪电成交销冠营</h3>
@@ -748,7 +759,7 @@
                         <span class="unit">/ 期</span>
                     </div>
                 </div>
-                <div class="service-card">
+                <div class="service-card pricealert">
                     <div class="service-icon">V</div>
                     <span class="service-tag">7天实战</span>
                     <h3>小红书爆款起号营</h3>
