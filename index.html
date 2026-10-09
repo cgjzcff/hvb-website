@@ -238,6 +238,18 @@
         .service-card.premium:hover { border-color: var(--gold); background: #221d15; }
         .service-card.premium:hover::before { opacity: 1; }
 
+        /* 已下架产品：整体变暗去色 + 右下角灰章，不响应悬停 */
+        .service-card.delisted { opacity: 0.5; filter: grayscale(0.9); pointer-events: none; }
+        .service-card.delisted::after {
+            content: '该品已下架';
+            position: absolute; right: 1rem; bottom: 1.2rem;
+            padding: 0.35rem 0.9rem;
+            border: 2px solid #999; border-radius: 8px;
+            color: #999; font-size: 0.85rem; font-weight: 700;
+            letter-spacing: 3px; transform: rotate(-12deg);
+            background: rgba(153, 153, 153, 0.08);
+        }
+
         .service-icon {
             font-family: var(--serif); font-size: 2rem; color: var(--gold);
             margin-bottom: 1rem; font-weight: 400;
@@ -504,6 +516,7 @@
             .service-price .amount { font-size: 1.4rem; }
             .service-tag { font-size: 0.68rem; padding: 0.2rem 0.55rem; }
             .service-icon { width: 28px; height: 28px; font-size: 0.7rem; margin-bottom: 0.4rem; }
+            .service-card.delisted::after { font-size: 0.72rem; right: 0.8rem; bottom: 0.9rem; padding: 0.25rem 0.6rem; letter-spacing: 2px; }
             .tier-label { font-size: 0.9rem; }
             .tier-desc { font-size: 0.72rem; }
 
@@ -736,7 +749,7 @@
                         <span class="unit">/ 期</span>
                     </div>
                 </div>
-                <div class="service-card">
+                <div class="service-card delisted">
                     <div class="service-icon">VI</div>
                     <span class="service-tag">年度社群</span>
                     <h3>AI 提效年度营</h3>
